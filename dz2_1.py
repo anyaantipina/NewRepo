@@ -21,27 +21,26 @@ def add(*args):
     root.columnconfigure(i, weight=1)
     root.rowconfigure(i, weight=1)
     Txt = Label(root, text="label")
-    Txt.grid(row=i, column=1, sticky=E+W+N)
+    Txt.grid(row=i, column=1, sticky=E+W+N+S)
     Butt1 = Button(root, text="button")
     Butt1.bind("<Button-1>", lambda event: change(event, Txt))
-    Butt1.grid(row=i, column=0, sticky=E+W+N)
+    Butt1.grid(row=i, column=0, sticky=E+W+N+S)
 
 
 TKroot = Tk()
 TKroot.title("Hello")
 
 root = Frame(TKroot)
-root.pack(fill=X)
+root.place(relx=0, rely=0, relheight=1, relwidth=1)
 
 root.columnconfigure(0, weight=1)
 root.columnconfigure(1, weight=1)
-root.rowconfigure(0,weight=1)
 
 Butt = Button(root, text="Add")
 Butt.bind('<Button-1>', add)
-Butt.grid(row=0, column=0, sticky=E+W+N)
+Butt.grid(row=0, column=0, sticky=E+W)
 Exit = Button(root, command=root.quit, text="Exit")
-Exit.grid(row=0, column=1, sticky=E+W+N)
+Exit.grid(row=0, column=1, sticky=E+W)
 
 TKroot.mainloop()
 print("Done")
