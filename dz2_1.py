@@ -1,16 +1,21 @@
 from tkinter import *
-from random import choice
-
-COLORS = ("snow", "linen", "PeachPuff", "cornsilk", "ivory", "azure",
-          "white", "black", "gray", "navy", "blue", "cyan", "green",
-          "yellow", "khaki", "gold", "RosyBrown", "sienna", "peru",
-          "burlywood", "beige", "wheat", "tan", "brown", "salmon",
-          "orange", "coral", "tomato", "red", "pink", "maroon",
-          "violet", "plum", "orchid", "purple", "thistle")
+from random import random
+from math import fabs
 
 def change(event, label):
-    bg_txt = choice(COLORS)
-    fg_txt = choice(COLORS)
+    red = int(random()*16)
+    green = int(random()*16)
+    blue = int(random()*16)
+    colors_bg = [red,green,blue]
+    bg_txt = '#%0x%0x%0x' % (red, green, blue)
+    red1 = int(random()*16)
+    green1 = int(random()*16)
+    blue1 = int(random()*16)
+    colors_fg = [red1,green1,blue1]
+    for i in range(3):
+        if (fabs(colors_bg[i] - colors_fg[i]) % 16) < 3:
+            colors_fg[i] = (colors_fg[i] + 5) % 16           
+    fg_txt = '#%0x%0x%0x' % (colors_fg[0], colors_fg[1], colors_fg[2])
     label.configure(bg = bg_txt, fg = fg_txt)
 
 i = 0
